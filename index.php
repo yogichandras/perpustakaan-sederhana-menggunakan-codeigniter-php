@@ -38,6 +38,21 @@
 
 /*
  *---------------------------------------------------------------
+ * Custom Code added
+ *---------------------------------------------------------------
+ *
+ * Since this project is not for large or enterprise development, custom
+ * code below is not pretty stright forward and need to be changed in
+ * real life project.
+ *
+ * Changes:
+ * - Localized for Waktu Indonesia Barat (WIB), keep this in case your
+ *   targeted users is from West Indonesia.
+ */
+	date_default_timezone_set('Asia/Jakarta');
+
+/*
+ *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
  *---------------------------------------------------------------
  *
