@@ -57,7 +57,7 @@ class Admin_model extends CI_Model
         $this->session->unset_userdata('admin_id');
         $this->user = FALSE;
 
-        if (!$this->user OR $this->session->has_userdata('admin_id')) {
+        if ($this->user OR $this->session->has_userdata('admin_id')) {
             return FALSE; // termination
         }
 
