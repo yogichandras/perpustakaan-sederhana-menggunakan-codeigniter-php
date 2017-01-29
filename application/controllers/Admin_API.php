@@ -10,7 +10,7 @@ class Admin_API extends CI_Controller
         $this->load->model('admin_model');
         $this->load->library('form_validation');
         $this->output->set_content_type('application/json');
-        if ($this->input->get('token')) {
+        if ($this->input->get('admin_token')) {
             $this->admin_model->login_token($this->input->get('token'));
         }
     }
@@ -56,7 +56,7 @@ class Admin_API extends CI_Controller
             'user' => $user,
             'token' => $this->admin_model->get_token()
         ]));
-        return TRUE; // termination
+        return TRUE;
     }
 
     public function all()
