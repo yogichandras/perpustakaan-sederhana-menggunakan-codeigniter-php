@@ -191,7 +191,7 @@ class Admin_API extends CI_Controller
             return FALSE; // termination
         }
 
-        $rules_email = ['trim', 'max_length[255]'];
+        $rules_email = ['trim', 'max_length[255]', 'valid_email'];
 
         if ($existing['admin_email'] !== $this->input->post('email')) {
             $rules_email[] = 'required';

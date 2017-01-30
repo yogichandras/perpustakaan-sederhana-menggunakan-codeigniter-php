@@ -98,7 +98,9 @@ class Catalog_API extends CI_Controller
     public function update($id)
     {
         if ($this->input->method(TRUE) !== 'POST') {
-            $this->output->set_output(json_encode(['status' => 'ERROR_REQUEST']));
+            $this->output->set_output(json_encode([
+                'status' => 'ERROR_REQUEST'
+            ]));
             return FALSE; // termination
         }
 
@@ -156,7 +158,9 @@ class Catalog_API extends CI_Controller
     public function update_image($id)
     {
         if ($this->input->method(TRUE) !== 'POST') {
-            $this->output->set_output(json_encode(['status' => 'ERROR_REQUEST']));
+            $this->output->set_output(json_encode([
+                'status' => 'ERROR_REQUEST'
+            ]));
             return FALSE; // termination
         }
 
