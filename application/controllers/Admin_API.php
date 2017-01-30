@@ -25,7 +25,7 @@ class Admin_API extends CI_Controller
         }
 
         $this->form_validation->set_rules('email', 'Email', [
-            'required'
+            'required', 'valid_email'
         ]);
         $this->form_validation->set_rules('password', 'Password', [
             'required'
