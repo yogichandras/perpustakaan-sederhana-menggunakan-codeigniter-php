@@ -102,15 +102,6 @@ class Catalog_model extends CI_Model
         return $this->db->update('catalog');
     }
 
-    public function save($id = NULL)
-    {
-        if ($id) {
-            $this->update($id);
-        } else {
-            $this->add();
-        }
-    }
-
     public function update_image($id, $code)
     {
         $this->db->set('catalog_image_code', $code);

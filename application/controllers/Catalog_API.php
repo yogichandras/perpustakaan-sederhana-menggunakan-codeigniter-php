@@ -242,11 +242,6 @@ class Catalog_API extends CI_Controller
         return TRUE;
     }
 
-    public function save($id = NULL)
-    {
-        return $this->catalog_model->save($id);
-    }
-
     public function delete($id)
     {
         if (!$this->admin_model->is_login()) {
