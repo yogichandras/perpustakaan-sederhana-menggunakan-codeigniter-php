@@ -8,8 +8,12 @@ class Catalog_API extends CI_Controller
         parent::__construct();
         $this->load->database();
         $this->load->model('catalog_model');
+        $this->load->model('admin_model');
         $this->load->library('form_validation');
         $this->output->set_content_type('application/json');
+        if ($this->input->get('admin_token')) {
+            $this->admin_model->login_token($this->input->get('admin_token'));
+        }
     }
 
     public function all()
@@ -63,6 +67,13 @@ class Catalog_API extends CI_Controller
             return FALSE; // termination
         }
 
+        if (!$this->admin_model->is_login()) {
+            $this->output->set_output(json_encode([
+                'status' => 'ERROR_AUTH'
+            ]));
+            return FALSE; // termination
+        }
+
         $this->form_validation->set_rules('register', 'Registration Number', [
             'trim', 'required', 'alpha_dash', 'max_length[24]',
             'is_unique[catalog.catalog_register]'
@@ -100,6 +111,13 @@ class Catalog_API extends CI_Controller
         if ($this->input->method(TRUE) !== 'POST') {
             $this->output->set_output(json_encode([
                 'status' => 'ERROR_REQUEST'
+            ]));
+            return FALSE; // termination
+        }
+
+        if (!$this->admin_model->is_login()) {
+            $this->output->set_output(json_encode([
+                'status' => 'ERROR_AUTH'
             ]));
             return FALSE; // termination
         }
@@ -164,6 +182,13 @@ class Catalog_API extends CI_Controller
             return FALSE; // termination
         }
 
+        if (!$this->admin_model->is_login()) {
+            $this->output->set_output(json_encode([
+                'status' => 'ERROR_AUTH'
+            ]));
+            return FALSE; // termination
+        }
+
         $existing = $this->catalog_model->find($id);
 
         if (!$existing) {
@@ -224,6 +249,13 @@ class Catalog_API extends CI_Controller
 
     public function delete($id)
     {
+        if (!$this->admin_model->is_login()) {
+            $this->output->set_output(json_encode([
+                'status' => 'ERROR_AUTH'
+            ]));
+            return FALSE; // termination
+        }
+
         $existing = $this->catalog_model->find($id);
 
         if (!$existing) {
