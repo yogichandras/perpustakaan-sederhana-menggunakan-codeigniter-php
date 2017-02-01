@@ -214,6 +214,13 @@ class Member_API extends CI_Controller
         $this->form_validation->set_rules('gender', 'Gender', [
             'in_list[male,female,unknown,misc]'
         ]);
+        $this->form_validation->set_rules('birthday', 'Birthday', [
+            'valid_date'
+        ]);
+        $this->form_validation->set_message(
+            'valid_date',
+            'The %s field must contain a valid date.'
+        );
 
         if (!$this->form_validation->run()) {
             $this->output->set_output(json_encode([
