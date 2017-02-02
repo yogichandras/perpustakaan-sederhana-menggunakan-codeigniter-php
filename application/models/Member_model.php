@@ -9,6 +9,7 @@ class Member_model extends CI_Model
     {
         parent::__construct();
 
+        $this->load->database();
         $this->config->load('auth');
         $this->load->helpers('base64url');
         $this->load->library('session');
