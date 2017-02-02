@@ -89,7 +89,7 @@ $autoload['drivers'] = [];
 |
 |    $autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = [];
+$autoload['helper'] = ['url', 'language'];
 
 /*
 | -------------------------------------------------------------------
@@ -117,7 +117,7 @@ $autoload['config'] = [];
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = [];
+$autoload['language'] = ['site'];
 
 /*
 | -------------------------------------------------------------------
