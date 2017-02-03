@@ -38,10 +38,20 @@ function is_login() {
 }
 
 function attempt_logout() {
-  clear_token();
-  $(".ctrl-login").show();
-  $('#login-modal').modal('show');
-  $(".ctrl-user").hide();
+  $.get("/member_api/logout")
+    .done(function(data) {
+      if (data.status !== 'SUCCESS') {
+        $("#ctrl-login-error").show();
+        return false;
+      }
+      clear_token();
+      $(".ctrl-login").show();
+      $('#login-modal').modal('show');
+      $(".ctrl-user").hide();
+    })
+    .fail(function() {
+      console.log('Fail!');
+    });
 }
 
 $(document).ready(function() {

@@ -69,6 +69,24 @@ class Member_API extends CI_Controller
         return TRUE;
     }
 
+    public function logout()
+    {
+        $user = $this->member_model->get_user();
+
+        if (!$this->member_model->logout()) {
+            $this->output->set_output(json_encode([
+                'status' => 'ERROR_LOGOUT'
+            ]));
+            return FALSE; // termination
+        }
+
+        $this->output->set_output(json_encode([
+            'status' => 'SUCCESS',
+            'user' => $user
+        ]));
+        return TRUE;
+    }
+
     public function find($id = NULL)
     {
         if ($id) {
